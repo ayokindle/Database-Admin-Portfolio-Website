@@ -1,0 +1,116 @@
+@custom-variant dark (&:is(.dark *));
+
+/* Light theme (default) */
+:root {
+  --font-size: 16px;
+  --background: #F4F6FA;
+  --foreground: #101826;
+  --card: #FFFFFF;
+  --card-foreground: #101826;
+  --popover: #FFFFFF;
+  --popover-foreground: #101826;
+  --primary: #0D9488;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EAEFF6;
+  --secondary-foreground: #101826;
+  --muted: #EAEFF6;
+  --muted-foreground: #5B6B85;
+  --accent: #B45309;
+  --accent-foreground: #FFFFFF;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #DCE3EE;
+  --input: transparent;
+  --input-background: #EAEFF6;
+  --switch-background: #DCE3EE;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #0D9488;
+  --radius: 0.625rem;
+}
+
+/* Dark theme (the original navy/terminal look) */
+.dark {
+  --background: #0B1220;
+  --foreground: #E8EDF5;
+  --card: #121B2E;
+  --card-foreground: #E8EDF5;
+  --popover: #121B2E;
+  --popover-foreground: #E8EDF5;
+  --primary: #5EEAD4;
+  --primary-foreground: #0B1220;
+  --secondary: #17223A;
+  --secondary-foreground: #E8EDF5;
+  --muted: #17223A;
+  --muted-foreground: #93A3BE;
+  --accent: #F5A623;
+  --accent-foreground: #0B1220;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #24344F;
+  --input: transparent;
+  --input-background: #17223A;
+  --switch-background: #24344F;
+  --ring: #5EEAD4;
+}
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    scroll-behavior: smooth;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  ::selection {
+    @apply bg-primary text-background;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label, button, input {
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
