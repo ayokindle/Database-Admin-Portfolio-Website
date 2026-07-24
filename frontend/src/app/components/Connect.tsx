@@ -8,12 +8,7 @@ const CONN = [
   { k: "SSL", v: "available for freelance / full-time", href: null },
 ];
 
-// 1. Sign up free at https://formspree.io, create a form, and paste its ID below.
-// 2. Formspree emails you every submission — no backend required.
-// Later, once you're comfortable with AWS, you can swap this fetch call for
-// API Gateway + Lambda + SES and list it as one of your own deployments.
-const FORMSPREE_FORM_ID = "your-form-id";
-const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
+const ENDPOINT = "/api/contact";
 
 const inputClasses =
   "w-full rounded-lg border border-border bg-secondary px-3.5 py-3 font-sans text-sm text-foreground outline-none transition-colors focus:border-primary";
@@ -27,14 +22,9 @@ export function Connect() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (FORMSPREE_FORM_ID === "your-form-id") {
-      setStatus("error");
-      return;
-    }
-
     setStatus("submitting");
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -124,12 +114,7 @@ export function Connect() {
               {status === "success" && (
                 <p className="text-primary">Sent — thanks, I'll get back to you soon.</p>
               )}
-              {status === "error" && FORMSPREE_FORM_ID === "your-form-id" && (
-                <p className="text-accent">
-                  Form isn't connected yet — add your Formspree form ID in Connect.tsx.
-                </p>
-              )}
-              {status === "error" && FORMSPREE_FORM_ID !== "your-form-id" && (
+              {status === "error" && (
                 <p className="text-accent">Something went wrong — try again in a moment.</p>
               )}
             </div>
