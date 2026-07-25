@@ -8,7 +8,9 @@ const CONN = [
   { k: "SSL", v: "available for freelance / full-time", href: null },
 ];
 
-const ENDPOINT = "/api/contact";
+const ENDPOINT = import.meta.env.PROD
+  ? "https://database-admin-portfolio-website.onrender.com/api/contact"
+  : "/api/contact";
 
 const inputClasses =
   "w-full rounded-lg border border-border bg-secondary px-3.5 py-3 font-sans text-sm text-foreground outline-none transition-colors focus:border-primary";
